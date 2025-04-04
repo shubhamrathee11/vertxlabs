@@ -34,7 +34,7 @@ const Overview = () => {
   const connectionGrowth = ((maxConnections - selectedData[0].connections) / selectedData[0].connections) * 100;
 
   return (
-    <div className="bg-black ml-4 mb-4 border-[#1D1D1D] p-4 rounded-lg w-full sm:w-[344px] md:w-[750px] md:h-[273px] sm:h-[400px] border-2 mr-2 sm:mr-0">
+    <div className="bg-black ml-4 mb-4 border-[#1D1D1D] p-4 rounded-lg w-[344px] sm:w-[344px] md:w-[750px] md:h-[273px] sm:h-[400px] border-2 mr-2 sm:mr-0">
       {/* Filters */}
       <div className="flex justify-start space-x-3 text-white text-sm mb-2 flex-wrap">
         <select className="bg-black border border-gray-600 px-2 py-1 rounded-2xl">
