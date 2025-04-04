@@ -1,41 +1,31 @@
-import React from "react";
-import DemographicsHeader from "./Demographics components/DemographicsHeader";
-import DemographicsMap from "./Demographics components/DemographicsMap";
-import DemographicsStats from "./Demographics components/DemographicsStats";
+import { useState } from "react";
+import OverviewFilters from "./Overview components/OverviewFilters";
+import OverviewStats from "./Overview components/OverviewStats";
+import OverviewChart from "./Overview components/OverviewChart";
 
-const countries = [
-  { name: "India", code: "in", color: "#8B5CF6", percentage: 40, coordinates: [78.9629, 20.5937] },
-  { name: "USA", code: "us", color: "#F97316", percentage: 25, coordinates: [-95.7129, 37.0902] },
-  { name: "Canada", code: "ca", color: "#EAB308", percentage: 10, coordinates: [-106.3468, 56.1304] },
-  { name: "UAE", code: "ae", color: "#10B981", percentage: 7, coordinates: [53.8478, 23.4241] },
-];
+const data = {
+  "30": [
+    { name: "Mar 1", visitors: 800, connections: 300 },
+    { name: "Mar 5", visitors: 1200, connections: 500 },
+    { name: "Mar 10", visitors: 900, connections: 400 },
+    { name: "Mar 15", visitors: 1500, connections: 600 },
+    { name: "Mar 20", visitors: 1100, connections: 450 },
+    { name: "Mar 25", visitors: 1600, connections: 700 },
+    { name: "Mar 30", visitors: 1800, connections: 750 },
+  ],
+};
 
-const Demographics = () => {
+const Overview = () => {
+  const [selectedRange] = useState("30");
+  const selectedData = data[selectedRange];
+
   return (
-    <div className="bg-black text-white rounded-lg sm:w-[3px] p-3 shadow-lg md:w-[98.5%] border-2 m-4 border-[#1D1D1D] relative h-auto mb-15">
-      <DemographicsHeader />
-      <div className="flex flex-col md:flex-row relative md:h-[260px] h-auto">
-        <DemographicsMap countries={countries} />
-        <DemographicsStats countries={countries} />
-      </div>
-      {/* Country Legend (Hidden on Mobile) */}
-  <div className="hidden md:flex absolute bottom-2 left-3 flex-wrap space-x-2 bg-black px-2 py-1 rounded-md border border-[#1D1D1D] text-xs">
-  {countries.map(({ name, color }) => (
-    <div key={name} className="flex items-center space-x-1">
-      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }}></span>
-      <span className="text-gray-400">{name}</span>
-    </div>
-  ))}
-</div>
-
-{/* View All Countries (Bottom Right) */}
-<div className="flex justify-end md:mr-36 mt-4">
-  <button className="text-gray-400 text-[14px] flex items-center hover:text-white">
-    View all countries →
-  </button>
-</div>
+    <div className="bg-black ml-4 mb-4 border-[#1D1D1D] p-4 rounded-lg w-[344px] md:w-[750px] md:h-[273px] sm:h-[400px] border-2">
+      <OverviewFilters />
+      <OverviewStats />
+      <OverviewChart data={selectedData} />
     </div>
   );
 };
 
-export default Demographics;
+export default Overview;
